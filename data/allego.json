@@ -7,6 +7,7 @@
   "lastUpdated": "March 2025",
   "tags": ["CPO", "Public charging", "18 countries", "CEO change Feb 2025"],
   "tagStyles": ["cpo", "pub", "eu", "signal"],
+  "alexConclusions": "<p>Sole focus on public charging, primarily destination. 35k stations. Probably around 2-3k DC and the rest is AC. They already have covered a lot of the needs for a public CPO. The question is, at that scale, how much do they struggle with operations — which is something a solid CPMS can help with, or totally ruin.</p><p>Also, their recent CEO change indicates a push for profitability, so I am not expecting aggressive expansion plans yet, but maybe in the following years, part of their strategy could be M&amp;A, especially given that this guys has experience with.</p><p>Now, another scenario would be that they sell to PE, but I am doubtful. Most likely they will first optimise cost, and then think about which companies are meaningful for M&amp;A expansion.</p><p>Typically, at this stage they should have figured cost reductions, operations at scale, profitability etc., but given the new CEO, that will most likely be the first big stage or milestone. The next would be sell or expand.</p><p>Definitely worth pursuing, unless they have already started talking/evaluating other CPMSes or they are completely closed off to the idea.</p>",
 
   "stats": [
     { "label": "Charge points",   "value": "35k+",  "sub": "Installed stations" },
