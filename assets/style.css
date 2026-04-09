@@ -33,6 +33,34 @@ a { color: #1a6bb5; }
 .panel { display: none; }
 .panel.active { display: block; }
 
+/* ── Alex Conclusions (above tabs) ── */
+.alex-conclusions {
+  background: #fff;
+  border: 1px solid #e5e4e0;
+  border-left: 4px solid #1a6bb5;
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.25rem;
+}
+.alex-conclusions-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: #1a6bb5;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+}
+.alex-conclusions-body {
+  font-size: 14px;
+  line-height: 1.65;
+  color: #1a1a18;
+}
+.alex-conclusions-body p { margin: 0 0 0.65em; }
+.alex-conclusions-body p:last-child { margin-bottom: 0; }
+.alex-conclusions-body ul { margin: 0.35em 0 0.85em 1.25em; padding: 0; }
+.alex-conclusions-body li { margin-bottom: 0.4em; }
+.alex-conclusions-body li:last-child { margin-bottom: 0; }
+
 /* ── Stats ── */
 .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-bottom: 12px; }
 .stat { background: #fff; border: 1px solid #e5e4e0; border-radius: 10px; padding: 14px 16px; }

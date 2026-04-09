@@ -42,6 +42,16 @@ function card(title, content) {
   return `<div class="card"><h3>${title}</h3>${content}</div>`;
 }
 
+function alexConclusionsBlock(html) {
+  const t = html == null ? '' : String(html).trim();
+  if (!t) return '';
+  return `
+    <section class="alex-conclusions" aria-label="Alex Conclusions">
+      <div class="alex-conclusions-label">Alex Conclusions</div>
+      <div class="alex-conclusions-body">${t}</div>
+    </section>`;
+}
+
 async function init() {
   const params = new URLSearchParams(window.location.search);
   const slug = params.get('cpo');
@@ -70,6 +80,8 @@ async function init() {
         <div class="badges">${d.tags.map((t,i)=>`<span class="badge ${TAG_STYLE_MAP[d.tagStyles[i]]||'b-eu'}">${t}</span>`).join('')}</div>
       </div>
     </div>
+
+    ${alexConclusionsBlock(d.alexConclusions)}
 
     <div class="tabs">
       ${['overview','network','product','commercial','signals','synthesis'].map(id=>
