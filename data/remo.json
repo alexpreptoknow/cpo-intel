@@ -1,0 +1,127 @@
+{
+  "slug": "remo",
+  "name": "Remo Mobility",
+  "website": "me-remo.com",
+  "hq": "Portugal",
+  "type": "CPO",
+  "lastUpdated": "March 2025",
+  "tags": ["CPO", "Mota-Engil subsidiary", "Ampeco confirmed", "Destination + Fleet"],
+  "tagStyles": ["cpo", "pub", "tech", "eu"],
+
+  "stats": [
+    { "label": "Fast chargers",  "value": "638",   "sub": "Fast charging stations" },
+    { "label": "Semi-fast",      "value": "67",    "sub": "Likely 22kW AC stations" },
+    { "label": "CPMS",          "value": "Ampeco", "sub": "Confirmed via app" },
+    { "label": "Parent group",   "value": "Mota-Engil", "sub": "75 years of engineering" }
+  ],
+
+  "overview": {
+    "businessType": [
+      { "label": "Category",        "value": "Full CPO — backed by Mota-Engil engineering/construction group" },
+      { "label": "Charging scope",  "value": "Public destination + fleet (buses, trucks, logistics, municipal)" },
+      { "label": "Primary use case","value": "Destination charging (revenue-generating locations) + fleet transition" },
+      { "label": "Business model",  "value": "Zero-investment for site hosts and fleet clients — Remo/Mota-Engil funds the infrastructure" },
+      { "label": "Fleet scope",     "value": "eBuses, eTrucks, logistics, last-mile, waste collection, taxi, public transport" }
+    ],
+    "countries": ["Portugal", "Spain"],
+    "countriesNote": "Portugal primary market. Spain confirmed — ultra-fast hub installed in Benalmádena. Expansion likely tied to Mota-Engil project pipeline."
+  },
+
+  "network": {
+    "composition": [
+      { "label": "Fast chargers",   "value": "638 fast charging stations" },
+      { "label": "Semi-fast",       "value": "67 stations — likely 22kW AC" },
+      { "label": "DC hardware",     "value": "EkoEnergetyka, Alpitronic, Kempower ultra-fast" },
+      { "label": "AC hardware",     "value": "Various AC wallboxes and poles" },
+      { "label": "OCPP",            "value": "Yes — confirmed (Ampeco platform)" },
+      { "label": "Plug & Charge",   "value": "In roadmap — \"convenience charging\" concept confirmed" }
+    ],
+    "roaming": [
+      { "name": "Gireve",     "desc": "Roaming integration confirmed" },
+      { "name": "EVA Global", "desc": "Support integration" }
+    ],
+    "roamingNote": "Roaming is present but not prominently promoted — consistent with a destination/fleet-focused CPO where drivers are expected to use the dedicated app.",
+    "partnerships": [
+      { "label": "Mota-Engil",  "value": "Parent group — funds infrastructure, provides engineering capability and financial backing" },
+      { "label": "Kempower",    "value": "Ultra-fast hardware partner — confirmed at Benalmádena hub (Spain)" },
+      { "label": "Gireve",      "value": "Roaming partner" },
+      { "label": "EVA Global",  "value": "Support / operations partner" },
+      { "label": "Ampeco",      "value": "CPMS platform — confirmed via app and Ampeco case study" }
+    ]
+  },
+
+  "product": {
+    "app": [
+      { "label": "App name",       "value": "REMO (iOS + Android)" },
+      { "label": "Platform",       "value": "Ampeco — branded white-label app" },
+      { "label": "Reviews",        "value": "Very few public reviews — insufficient data" },
+      { "label": "Plug & Charge",  "value": "Planned — part of their \"convenience charging\" vision" }
+    ],
+    "appNote": "App is Ampeco-powered. Remo selected Ampeco specifically for flexibility, product roadmap transparency, the ability to influence roadmap, and white-label branding to build direct EV driver relationships.",
+    "stack": [
+      { "label": "CPMS",         "value": "Ampeco — confirmed" },
+      { "label": "Roaming",      "value": "Gireve integration via Ampeco" },
+      { "label": "Support ops",  "value": "EVA Global" },
+      { "label": "Fleet mgmt",   "value": "Fleet transition training programmes included in offer" }
+    ],
+    "cpms": "Ampeco",
+    "siteHost": [
+      { "label": "Target hosts",   "value": "Municipalities, golf courses, marine parkings, hotels, hospitals, restaurants, unused land" },
+      { "label": "Model",          "value": "Zero upfront cost — Remo invests; site host earns revenue share" },
+      { "label": "Host revenue",   "value": "Up to €100 per parking space claimed" },
+      { "label": "Long-term",      "value": "Remo takes the risk; likely locks in long-term revenue-share contracts" }
+    ]
+  },
+
+  "commercial": {
+    "revenue": [
+      { "label": "Session fees",      "value": "Per-kWh or per-session charges from public and fleet users" },
+      { "label": "Fleet retainers",   "value": "Long-term monthly contracts for fleet-as-a-service clients" },
+      { "label": "Rev-share sites",   "value": "Remo retains majority; site host receives share" },
+      { "label": "Financing",         "value": "Financed infrastructure solutions — clients pay over time rather than upfront" }
+    ],
+    "funding": [
+      { "label": "Parent",       "value": "Mota-Engil Group — major Portuguese engineering/construction group" },
+      { "label": "Model",        "value": "Mota-Engil subsidises infrastructure investment — gives Remo ability to offer zero-cost to clients" },
+      { "label": "Implication",  "value": "Every running cost (including CPMS) is scrutinised — the financial model is capex-heavy, not software-first" }
+    ],
+    "policy": [
+      { "label": "Decarbonisation", "value": "Core mission — positioned as fleet transition enabler, not just charger installer" },
+      { "label": "Public sector",   "value": "City councils and municipalities are active clients — public tender experience" }
+    ]
+  },
+
+  "signals": {
+    "salesSignals": [
+      { "icon": "✅", "text": "Already an Ampeco client. This is known intel — use carefully. The relevant question is whether they are happy, what gaps remain, and whether they're approaching a renewal or expansion conversation." },
+      { "icon": "💰", "text": "Heavy capex model means every recurring software cost is under pressure. Ampeco pricing vs alternatives will be compared at renewal. Understanding their CPMS spend vs value perceived is key." },
+      { "icon": "🚌", "text": "Fleet-as-a-service is complex. Managing eBus, eTruck, and last-mile fleets alongside public destination charging is a real multi-use-case challenge. Gaps in reporting, energy management, or billing may emerge as they scale." },
+      { "icon": "🔌", "text": "Plug & Charge is in their roadmap — they chose Ampeco partly for this. If implementation has been slow, that's a pain point to probe." }
+    ],
+    "openQuestions": [
+      "How satisfied is Remo with Ampeco — are there unmet requirements or roadmap delays?",
+      "When is their Ampeco contract up for renewal?",
+      "Has Plug & Charge been delivered? What other roadmap items are pending?",
+      "How is their fleet-as-a-service billing working in practice — any operational gaps?",
+      "Is Mota-Engil expanding Remo into new markets, and what CPMS requirements does that create?"
+    ]
+  },
+
+  "synthesis": {
+    "verdict": "monitor",
+    "verdictText": "Remo is an existing Ampeco client — confirmed from app and case study. Not a near-term opportunity unless there is friction with Ampeco, a contract renewal approaching, or a new market expansion that creates new CPMS requirements. Monitor for signals of dissatisfaction or growth that outpaces current capabilities.",
+    "hypotheses": [
+      { "label": "Hypothesis 1 — Cost scrutiny will intensify as they scale", "text": "Mota-Engil funds Remo's infrastructure but watches running costs closely. As the network grows from ~700 to thousands of charge points, CPMS fees become a more significant line item. A compelling cost-per-connector story would resonate at renewal." },
+      { "label": "Hypothesis 2 — Fleet-as-a-service complexity is the future gap", "text": "Remo's fleet offer is ambitious — eBuses, eTrucks, logistics, last-mile, all with financed infrastructure. As this scales, multi-depot energy management, complex billing, and driver reimbursement will stress a standard CPMS. Worth tracking if Ampeco keeps pace." }
+    ],
+    "uncertainties": [
+      "Ampeco relationship depth and satisfaction level unknown.",
+      "Contract length and renewal timeline unknown.",
+      "Unclear how much of Remo's fleet-as-a-service is live vs pipeline — actual operational complexity may be lower than projected."
+    ],
+    "contacts": [
+      { "initials": "RM", "name": "Remo leadership", "title": "CEO / Head of Technology", "note": "Identify via LinkedIn — look for the person who owns the Ampeco relationship (likely CTO or Head of Product/Operations)." }
+    ],
+    "contactsNote": "Approach only when there is a concrete trigger — contract renewal, new market entry, or a product gap surfaced via market intel. Cold outreach without a hook is low ROI given they already have a CPMS."
+  }
+}

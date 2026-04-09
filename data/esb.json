@@ -1,0 +1,132 @@
+{
+  "slug": "esb",
+  "name": "ESB eCars",
+  "website": "esb.ie/what-we-do/ecars",
+  "hq": "Ireland",
+  "type": "CPO",
+  "lastUpdated": "March 2025",
+  "tags": ["CPO", "Public + Fleet", "Ireland + GB", "Driivz confirmed"],
+  "tagStyles": ["cpo", "pub", "eu", "tech"],
+
+  "stats": [
+    { "label": "Charge points",  "value": "1,600",  "sub": "Public connectors (per FAQ)" },
+    { "label": "DC locations",   "value": "140",    "sub": "Out of 580 total locations" },
+    { "label": "Total locations","value": "580",    "sub": "Ireland + Great Britain" },
+    { "label": "Target by 2030", "value": "2,100",  "sub": "Stations planned" }
+  ],
+
+  "overview": {
+    "businessType": [
+      { "label": "Category",        "value": "Full CPO — state-backed energy utility (since 2010)" },
+      { "label": "Charging scope",  "value": "Public destination + fleet / workplace. No home charging under ESB brand." },
+      { "label": "Primary use case","value": "In-town destination (AC) + high-power DC (360kW) hubs" },
+      { "label": "DC estimate",     "value": "140 DC locations — mix of legacy 50kW and newer 360kW high-power" },
+      { "label": "AC estimate",     "value": "Majority of 580 locations — legacy 22kW ABB-era stations" },
+      { "label": "Home charging",   "value": "Available via Electric Ireland (separate division) with Zappi only" }
+    ],
+    "countries": ["Ireland", "Great Britain"],
+    "countriesNote": "Multi-currency and multi-VAT operations — IE and GB legal entities managed separately."
+  },
+
+  "network": {
+    "composition": [
+      { "label": "Total connectors", "value": "1,600 (per FAQ) — up to 1,400 simultaneous EVs per homepage claim" },
+      { "label": "Locations",        "value": "580 total — 140 with DC, remainder AC" },
+      { "label": "DC hardware",      "value": "High-power 360kW stations + legacy 50kW (likely ABB)" },
+      { "label": "AC hardware",      "value": "22kW stations — large legacy estate from 2010 rollout" },
+      { "label": "OCPP",             "value": "Yes — confirmed by CPMS provider (Driivz)" },
+      { "label": "Growth target",    "value": "2,100 stations by 2030 — recent focus is high-power DC destination" }
+    ],
+    "roaming": [
+      { "name": "Closed network", "desc": "Very limited roaming — confirmed by observation" },
+      { "name": "RFID card",      "desc": "Recommended by users over app in poor signal areas" }
+    ],
+    "roamingNote": "Roaming is notably absent from their website. ESB operates a largely closed network — EV drivers on competitor networks have limited access. No major roaming hub integrations confirmed.",
+    "partnerships": [
+      { "label": "Tesco Ireland",  "value": "52 locations nationwide — rollout announced 2019" },
+      { "label": "Greenergy",      "value": "Collaboration to install rapid chargers" },
+      { "label": "eHubs",         "value": "Shared mobility hubs (cars, bikes, eCargo) — city-subsidised, on-street" }
+    ]
+  },
+
+  "product": {
+    "app": [
+      { "label": "App name",        "value": "eCar Connect (iOS + Android)" },
+      { "label": "Payment methods", "value": "App, contactless card, RFID card" },
+      { "label": "Subscriptions",   "value": "Members plan vs Pay-as-you-go (members get ~€0.05/kWh discount)" },
+      { "label": "Fleet portal",    "value": "Separate fleet management portal — vehicle tracking included" },
+      { "label": "App health",      "value": "Mixed to negative reviews — crashes, holding fees, map issues post-redesign" },
+      { "label": "Support",         "value": "24/7 — most likely internal given company scale" }
+    ],
+    "appNote": "Major user frustrations: €30–50 card pre-authorisation holds, €8 overstay fees after 45 min on rapid chargers, app crashes. RFID card recommended by experienced users for reliability.",
+    "stack": [
+      { "label": "CPMS",            "value": "Driivz — confirmed via case study and app" },
+      { "label": "Fleet portal",    "value": "ESB EV Fleet Management Portal (Driivz-powered)" },
+      { "label": "Smart energy",    "value": "Separate smart energy management software (not CPMS)" },
+      { "label": "Home charging",   "value": "Zappi (via Electric Ireland) — proprietary software, not integrated with eCars" }
+    ],
+    "cpms": "Driivz",
+    "siteHost": [
+      { "label": "Target hosts",    "value": "Tesco, public car parks, transport hubs, city centres" },
+      { "label": "Revenue model",   "value": "ESB owns and operates — no standard rev-share model publicly stated" },
+      { "label": "Pricing model",   "value": "Per-kWh pricing: members €0.54–0.61/kWh, PAYG €0.59–0.66/kWh depending on speed" },
+      { "label": "Overstay fee",    "value": "€8 after 45 min on rapid chargers — contentious with users" }
+    ]
+  },
+
+  "commercial": {
+    "revenue": [
+      { "label": "Session fees",    "value": "Per-kWh charging — members and PAYG tiers" },
+      { "label": "Memberships",     "value": "Subscription plan with discounted rates" },
+      { "label": "Fleet contracts", "value": "Fleet portal + workplace charging for corporate clients" },
+      { "label": "Overstay fees",   "value": "€8/session after threshold — generates revenue but causes significant user friction" },
+      { "label": "Utility parent",  "value": "ESB Group — energy generation, grid (2.5M customers), retail (1.3M customers via Electric Ireland)" }
+    ],
+    "funding": [
+      { "label": "Parent",          "value": "ESB Group — state-backed Irish energy utility" },
+      { "label": "Scale",           "value": "ESB Networks services 2.5M homes and businesses" },
+      { "label": "Investment pace", "value": "Active: recent announcements focus on high-power DC destination hubs" }
+    ],
+    "policy": [
+      { "label": "Market position", "value": "Dominant Irish CPO — drivers often have no alternative despite pricing complaints" },
+      { "label": "GB expansion",    "value": "Growing presence in Great Britain, adds multi-currency/VAT/legal complexity" },
+      { "label": "Regulation",      "value": "State utility status gives strong positioning in public tenders and grants" }
+    ]
+  },
+
+  "signals": {
+    "salesSignals": [
+      { "icon": "🔧", "text": "Known CPMS: Driivz. Driivz does not support home charging — which is a confirmed gap. ESB is a utility that services millions of homes, making home charging a natural expansion they're currently missing." },
+      { "icon": "📱", "text": "App quality is a visible weak point. User reviews cite crashes, confusing maps, and payment friction. A branded app with better UX is a concrete differentiator to lead with." },
+      { "icon": "🏠", "text": "Home charging gap. Electric Ireland offers Zappi only — no integrated home charging under the ESB eCars umbrella. A full-stack CPMS covering public + workplace + home with reimbursement is a clear unmet need." },
+      { "icon": "🌍", "text": "Multi-entity complexity. Ireland + Great Britain means multiple currencies, VATs, and legal entities. This is a known CPMS feature that would resonate with their ops team." },
+      { "icon": "📊", "text": "Competitor pressure exists. If EasyGo or other Irish CPOs are winning drivers away from ESB due to pricing and reliability, that's a useful data point to leverage in outreach." }
+    ],
+    "openQuestions": [
+      "Is ESB actively evaluating alternatives to Driivz, or is the relationship locked in long-term?",
+      "Who owns the CPMS relationship at ESB — is it IT, the eCars division, or the utility parent?",
+      "Are drivers visibly switching to EasyGo or other networks? What does market share data show?",
+      "Does ESB have any plans to integrate home charging with eCars (beyond Electric Ireland's Zappi offering)?",
+      "What is the internal SLA performance on Driivz — are they satisfied with uptime and billing accuracy?"
+    ]
+  },
+
+  "synthesis": {
+    "verdict": "worth pursuing",
+    "verdictText": "Dominant Irish CPO with a confirmed CPMS (Driivz), a visible home charging gap, app quality issues, and multi-country complexity. The case for switching centres on the home charging use case, better driver UX, and integrated fleet + public + workplace management. Timing depends on Driivz contract length.",
+    "hypotheses": [
+      { "label": "Hypothesis 1 — Home charging is the wedge", "text": "Driivz's lack of home charging is a structural gap for a company that serves 1.3M homes via Electric Ireland. A CPMS that unifies public, workplace, and home with driver reimbursements would be a material upgrade — and a story ESB could tell to enterprise fleet clients." },
+      { "label": "Hypothesis 2 — App quality is the visible pain point", "text": "User complaints about the app are public and consistent. A better-branded, more reliable driver app is a low-risk conversation opener that doesn't require internal CPMS knowledge upfront." },
+      { "label": "Hypothesis 3 — Fleet expansion creates new software requirements", "text": "Their fleet portal currently supports vehicle tracking, but fleet-as-a-service (home reimbursement, mixed public/workplace sessions, multi-depot reporting) will require capabilities beyond what legacy Driivz provides as they grow." }
+    ],
+    "uncertainties": [
+      "Driivz contract terms unknown — could be multi-year with significant switching costs.",
+      "Decision-making split between ESB eCars, Electric Ireland, and the ESB Group IT function makes identifying the right buyer complex.",
+      "ESB's state utility status may mean procurement decisions go through long public tender processes."
+    ],
+    "contacts": [
+      { "initials": "EC", "name": "eCars leadership", "title": "Head of eCars / EV Strategy", "note": "Identify current head via LinkedIn — role may sit under ESB Networks or as a standalone division." }
+    ],
+    "contactsNote": "Also look for: CTO or Head of Digital at ESB Group; Head of Fleet Solutions. The home charging angle may resonate more with Electric Ireland's product team."
+  }
+}

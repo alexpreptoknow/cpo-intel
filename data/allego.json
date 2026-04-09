@@ -1,0 +1,138 @@
+{
+  "slug": "allego",
+  "name": "Allego",
+  "website": "allego.eu",
+  "hq": "Netherlands",
+  "type": "CPO",
+  "lastUpdated": "March 2025",
+  "tags": ["CPO", "Public charging", "18 countries", "CEO change Feb 2025"],
+  "tagStyles": ["cpo", "pub", "eu", "signal"],
+
+  "stats": [
+    { "label": "Charge points",   "value": "35k+",  "sub": "Installed stations" },
+    { "label": "Roaming access",  "value": "950k+", "sub": "Locations via partners" },
+    { "label": "Countries",       "value": "18",    "sub": "EU + UK" },
+    { "label": "App availability","value": "9",     "sub": "Countries with subscription" }
+  ],
+
+  "overview": {
+    "businessType": [
+      { "label": "Category",        "value": "Full CPO — owns and operates network" },
+      { "label": "Charging scope",  "value": "Public only — no home or workplace" },
+      { "label": "Primary use case","value": "Destination charging (retail, hotel, mall, restaurant)" },
+      { "label": "DC estimate",     "value": "~2–3k connectors (750+ ultra-fast locations → ≥1,500 DC)" },
+      { "label": "AC estimate",     "value": "Majority — destination AC at site hosts" }
+    ],
+    "countries": ["Netherlands","Belgium","Germany","France","UK","Austria","Denmark","Sweden","Norway","Finland","Estonia","Poland","Portugal","Slovenia","Spain","Switzerland","Italy","Luxembourg"],
+    "countriesNote": "App & subscription available in 9: NL, BE, DE, FR, UK, DK, SE, AT, SI"
+  },
+
+  "network": {
+    "composition": [
+      { "label": "Total stations",  "value": "35,000+ charge points (lower-bound figure from public claims)" },
+      { "label": "Ultra-fast DC",   "value": "750+ locations — implies ≥1,500 DC connectors" },
+      { "label": "AC",              "value": "Primarily at destination sites — retail, leisure, hospitality" },
+      { "label": "OCPP",            "value": "Confirmed via job listings (charger communication protocol)" },
+      { "label": "Plug & Charge",   "value": "Supported — not universally available from all CPMS providers" }
+    ],
+    "roaming": [
+      { "name": "Hubject",    "desc": "P2P roaming hub" },
+      { "name": "Gireve",     "desc": "EU roaming" },
+      { "name": "e-clearing", "desc": "OCHP clearing" },
+      { "name": "ZapMap",     "desc": "UK map/roaming" },
+      { "name": "100+ cards", "desc": "EMSP acceptance" },
+      { "name": "P2P",        "desc": "Direct connections" }
+    ],
+    "roamingNote": "Accepted cards include Plug Surfing, EV Box, Blue Corner, New Motion, and many others. Total roaming reach: 950,000+ locations.",
+    "partnerships": [
+      { "label": "SNCB (Belgium)",           "value": "Station car parks — all public cards accepted" },
+      { "label": "Hofer + Enertec",          "value": "One of Slovenia's largest fast-charging networks" },
+      { "label": "Taxi Centrale Amsterdam",  "value": "Commercial agreement — professional drivers" },
+      { "label": "Uber",                     "value": "Commercial agreement — discounted charging for Uber drivers across Europe" }
+    ]
+  },
+
+  "product": {
+    "app": [
+      { "label": "Current app",     "value": "Allego App (rebranded from Smoov)" },
+      { "label": "Legacy brand",    "value": "Smoov — same product, old name" },
+      { "label": "Payment methods", "value": "Pay-as-you-go, contactless, browser payments" },
+      { "label": "Subscriptions",   "value": "In-app discounts + subscription plans" },
+      { "label": "Route planning",  "value": "Likely ChargeTrip (assumed, not confirmed)" },
+      { "label": "Support",         "value": "Phone + live chat" }
+    ],
+    "appNote": "Recent reviews mostly positive. Some historical payment and session registration issues — likely from Smoov → Allego rebrand transition.",
+    "stack": [
+      { "label": "ERP / Finance",       "value": "Microsoft Dynamics 365 F&O" },
+      { "label": "Cloud",               "value": "Azure" },
+      { "label": "Low-code",            "value": "Microsoft Power Platform" },
+      { "label": "Charger comms",       "value": "OCPP" },
+      { "label": "Billing automation",  "value": "Dynamics F&O — active hiring to automate at 35k+ CP scale" },
+      { "label": "Site planning AI",    "value": "Allamo (proprietary)" },
+      { "label": "Route planning",      "value": "ChargeTrip (assumed)" }
+    ],
+    "cpms": "Unknown",
+    "siteHost": [
+      { "label": "Target hosts",      "value": "Retail owners, malls, restaurants, hotels, landowners" },
+      { "label": "Revenue model",     "value": "Revenue sharing — host gets a cut, maintenance handled by Allego" },
+      { "label": "Value prop",        "value": "\"Maintenance-free experience\" + revenue share" },
+      { "label": "Scope constraint",  "value": "Public destination only — no home, no workplace" }
+    ]
+  },
+
+  "commercial": {
+    "revenue": [
+      { "label": "Session fees",       "value": "Pay-as-you-go charges from EV drivers" },
+      { "label": "Subscriptions",      "value": "Allego App subscription plans with discounted per-kWh rates" },
+      { "label": "Roaming fees",       "value": "Interoperability fees from 100+ EMSP partners accessing the network" },
+      { "label": "B2B / fleet",        "value": "Commercial deals (Uber, Taxi Centrale) — likely volume pricing" },
+      { "label": "Site host rev-share","value": "Host receives a share; Allego retains the majority" }
+    ],
+    "funding": [
+      { "label": "Investor",      "value": "Meridiam (infrastructure PE)" },
+      { "label": "Instrument",    "value": "EUR 150M convertible bond" },
+      { "label": "Use of funds",  "value": "Subsidising network deployment — at no upfront cost to destination hosts" }
+    ],
+    "policy": [
+      { "label": "Charge France",      "value": "Co-founder among 13 members — lobbying for €4B+ CPO investment framework by 2028" },
+      { "label": "Objective",          "value": "Regulatory support + government subsidy access for charging infrastructure" },
+      { "label": "Strategic leverage", "value": "Scale gives them a meaningful seat at the French policy table" }
+    ]
+  },
+
+  "signals": {
+    "salesSignals": [
+      { "icon": "⚡", "text": "CEO change — Feb 2025. Steven Salo hired specifically to drive profitability. Strong signal for cost optimisation, procurement reviews, and openness to operational tooling that reduces OPEX at scale." },
+      { "icon": "📊", "text": "Scale without confirmed profitability. 35k stations is a large footprint. Operational complexity compounds fast at this size — uptime, billing, roaming settlement, and scheduling are all likely pain points." },
+      { "icon": "🔧", "text": "Active Dynamics F&O billing automation hiring. They are actively building backend complexity to automate billing for 35k+ charge points — potential gap where a better CPMS integration could help." },
+      { "icon": "🤝", "text": "M&A profile emerging post-profitability. New CEO has M&A experience. Likely playbook: stabilise → optimise → acquire. A scalable CPMS becomes critical if they plan to onboard acquired networks." },
+      { "icon": "🌍", "text": "Multi-country complexity. 18 countries with different regulations, roaming structures, and local partnerships. Managing this at scale across a single CPMS is non-trivial." }
+    ],
+    "openQuestions": [
+      "Are they currently in active CPMS evaluation conversations with other vendors?",
+      "What CPMS are they running today — proprietary in-house, or a third-party platform?",
+      "Is the new CEO mandating a full tech stack review, or primarily finance and operations?",
+      "What are the actual pain points at scale — uptime, billing accuracy, roaming settlement, driver app quality?",
+      "Has ChargeTrip been confirmed as the route planning provider, or is it still an assumption from app observation?"
+    ]
+  },
+
+  "synthesis": {
+    "verdict": "worth pursuing",
+    "verdictText": "Large-scale CPO with a confirmed public network, active backend investment, and a new leadership mandate for profitability. The combination of scale + cost pressure + potential M&A ambition makes this a high-value prospect — unless CPMS conversations are already too advanced elsewhere.",
+    "hypotheses": [
+      { "label": "Hypothesis 1 — Cost reduction is the first priority", "text": "New CEO Steven Salo was hired to make the business profitable. The most likely first move is operational cost reduction, not aggressive expansion. Any tool that can demonstrably reduce OPEX per charge point (fewer support tickets, better uptime, billing accuracy) will have a strong ROI story right now." },
+      { "label": "Hypothesis 2 — M&A expansion follows profitability", "text": "Salo has M&A experience. The likely playbook: stabilise → optimise → acquire smaller CPOs or adjacent players. A scalable CPMS becomes critical if they plan to onboard acquired networks efficiently — a proprietary in-house system becomes a bottleneck at that point." },
+      { "label": "Hypothesis 3 — AC destination is the operationally underserved segment", "text": "DC fast charging is well-covered commercially. The bulk of their 35k stations is likely AC at destination sites. This segment has distinct CPMS requirements — longer dwell times, revenue share settlement, and site host reporting — worth validating as potential gaps." }
+    ],
+    "uncertainties": [
+      "Current CPMS is unknown. If proprietary and in-house, the sales motion is displacement — harder. If third-party with poor fit, it's a switch story with a clearer path.",
+      "No confirmed PE exit signals. A sale to PE would likely pause procurement decisions significantly.",
+      "ChargeTrip as route planning provider is an assumption from app observation, not confirmed from official sources."
+    ],
+    "contacts": [
+      { "initials": "SS", "name": "Steven Salo", "title": "CEO", "note": "Hired Feb 2025. Primary strategic decision-maker with a profitability mandate and M&A background." }
+    ],
+    "contactsNote": "Secondary targets: CTO / Head of Operations / Head of Technology — whoever owns the CPMS relationship. Identify via LinkedIn. Look for anyone with \"charging platform\", \"backend\", or \"infrastructure\" in their title."
+  }
+}

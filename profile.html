@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CPO Profile</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="topnav">
+  <a class="topnav-brand" href="index.html">← CPO Intel</a>
+  <select class="topnav-select" id="cpo-switcher" onchange="navigate(this.value)">
+    <option value="">Loading...</option>
+  </select>
+</nav>
+
+<div class="layout" id="app">
+  <p style="color:#888;padding:2rem 0">Loading profile...</p>
+</div>
+
+<script>
+const TAG_STYLE_MAP = {
+  cpo: "b-cpo", pub: "b-pub", eu: "b-eu", signal: "b-signal", tech: "b-tech", low: "b-low"
+};
+
+const VERDICT_META = {
+  "worth pursuing": { cls: "verdict-pursuing", icon: "✓" },
+  "monitor":        { cls: "verdict-monitor",  icon: "◎" },
+  "low priority":   { cls: "verdict-low",      icon: "–" }
+};
+
+function navigate(slug) {
+  if (slug) window.location.href = `profile.html?cpo=${slug}`;
+}
+
+function rows(arr) {
+  return arr.map(r => `<div class="row"><span class="rl">${r.label}</span><span class="rv">${r.value}</span></div>`).join('');
+}
+
+function card(title, content) {
+  return `<div class="card"><h3>${title}</h3>${content}</div>`;
+}
+
+async function init() {
+  const params = new URLSearchParams(window.location.search);
+  const slug = params.get('cpo');
+
+  const manifest = await fetch('data/manifest.json').then(r => r.json());
+
+  // Populate switcher
+  const switcher = document.getElementById('cpo-switcher');
+  switcher.innerHTML = manifest.map(m =>
+    `<option value="${m.slug}" ${m.slug === slug ? 'selected' : ''}>${m.name}</option>`
+  ).join('');
+
+  if (!slug) { document.getElementById('app').innerHTML = '<p>No CPO selected.</p>'; return; }
+
+  const d = await fetch(`data/${slug}.json`).then(r => r.json());
+  document.title = `${d.name} — CPO Intel`;
+
+  const vm = VERDICT_META[d.synthesis.verdict] || VERDICT_META["monitor"];
+
+  const html = `
+    <div class="header">
+      <div class="logo">${d.name.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase()}</div>
+      <div class="header-meta">
+        <h1>${d.name}</h1>
+        <div class="sub"><a href="https://${d.website}" target="_blank">${d.website}</a> &nbsp;·&nbsp; ${d.hq} &nbsp;·&nbsp; Last updated: ${d.lastUpdated}</div>
+        <div class="badges">${d.tags.map((t,i)=>`<span class="badge ${TAG_STYLE_MAP[d.tagStyles[i]]||'b-eu'}">${t}</span>`).join('')}</div>
+      </div>
+    </div>
+
+    <div class="tabs">
+      ${['overview','network','product','commercial','signals','synthesis'].map(id=>
+        `<button class="tab" onclick="switchTab('${id}',this)">${id.charAt(0).toUpperCase()+id.slice(1)}</button>`
+      ).join('')}
+    </div>
+
+    <!-- OVERVIEW -->
+    <div id="panel-overview" class="panel">
+      <div class="stat-grid">
+        ${d.stats.map(s=>`<div class="stat"><div class="stat-label">${s.label}</div><div class="stat-value">${s.value}</div><div class="stat-sub">${s.sub}</div></div>`).join('')}
+      </div>
+      <div class="two-col">
+        ${card('Business type', rows(d.overview.businessType))}
+        <div class="card">
+          <h3>Countries of operation</h3>
+          <div class="ctags">${d.overview.countries.map(c=>`<span class="ctag">${c}</span>`).join('')}</div>
+          <div class="divider"></div>
+          <div class="muted-note">${d.overview.countriesNote}</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NETWORK -->
+    <div id="panel-network" class="panel">
+      ${card('Network composition', rows(d.network.composition))}
+      <div class="card">
+        <h3>Roaming &amp; interoperability</h3>
+        <div class="roaming-grid">
+          ${d.network.roaming.map(r=>`<div class="ri"><div class="ri-name">${r.name}</div><div class="ri-desc">${r.desc}</div></div>`).join('')}
+        </div>
+        <div class="divider"></div>
+        <div class="muted-note">${d.network.roamingNote}</div>
+      </div>
+      ${d.network.partnerships.length ? card('Notable partnerships', rows(d.network.partnerships)) : ''}
+    </div>
+
+    <!-- PRODUCT -->
+    <div id="panel-product" class="panel">
+      <div class="two-col">
+        <div class="card">
+          <h3>EV driver app</h3>
+          ${rows(d.product.app)}
+          <div class="divider"></div>
+          <div class="muted-note">${d.product.appNote}</div>
+        </div>
+        <div class="card">
+          <h3>Technology stack</h3>
+          ${rows(d.product.stack)}
+        </div>
+      </div>
+      ${card('Site host model', rows(d.product.siteHost))}
+    </div>
+
+    <!-- COMMERCIAL -->
+    <div id="panel-commercial" class="panel">
+      ${card('Revenue streams', rows(d.commercial.revenue))}
+      ${card('Funding &amp; backing', rows(d.commercial.funding))}
+      ${d.commercial.policy.length ? card('Policy &amp; industry positioning', rows(d.commercial.policy)) : ''}
+    </div>
+
+    <!-- SIGNALS -->
+    <div id="panel-signals" class="panel">
+      <div class="section-label">Sales signals</div>
+      <div class="card">
+        <ul class="signal-list">
+          ${d.signals.salesSignals.map(s=>`<li><span class="si">${s.icon}</span><span>${s.text}</span></li>`).join('')}
+        </ul>
+      </div>
+      <div class="divider"></div>
+      <div class="section-label">Open questions</div>
+      <div class="card">
+        ${d.signals.openQuestions.map((q,i)=>`<div class="oq"><span class="qn">${String(i+1).padStart(2,'0')}</span><span>${q}</span></div>`).join('')}
+      </div>
+    </div>
+
+    <!-- SYNTHESIS -->
+    <div id="panel-synthesis" class="panel">
+      <div class="verdict-wrap ${vm.cls}">
+        <span class="verdict-icon">${vm.icon}</span>
+        <div class="verdict-text"><strong>${d.synthesis.verdict.charAt(0).toUpperCase()+d.synthesis.verdict.slice(1)}.</strong> ${d.synthesis.verdictText}</div>
+      </div>
+      <div class="section-label">Hypotheses</div>
+      ${d.synthesis.hypotheses.map(h=>`<div class="hyp"><div class="hyp-label">${h.label}</div>${h.text}</div>`).join('')}
+      <div class="divider"></div>
+      <div class="section-label">Key uncertainties</div>
+      ${d.synthesis.uncertainties.map(u=>`<div class="unc">${u}</div>`).join('')}
+      <div class="divider"></div>
+      <div class="section-label">Contact strategy</div>
+      ${d.synthesis.contacts.map(c=>`
+        <div class="card">
+          <div class="contact-wrap">
+            <div class="avatar">${c.initials}</div>
+            <div>
+              <div style="font-size:14px;font-weight:700">${c.name}</div>
+              <div style="font-size:12px;color:#888;margin-top:2px">${c.title}</div>
+              <div style="font-size:13px;margin-top:4px">${c.note}</div>
+            </div>
+          </div>
+          <div class="divider"></div>
+          <div class="muted-note">${d.synthesis.contactsNote}</div>
+        </div>`).join('')}
+    </div>`;
+
+  document.getElementById('app').innerHTML = html;
+
+  // Activate first tab
+  const firstTab = document.querySelector('.tab');
+  if (firstTab) switchTab('overview', firstTab);
+}
+
+function switchTab(id, el) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  const panel = document.getElementById('panel-' + id);
+  if (panel) panel.classList.add('active');
+  if (el) el.classList.add('active');
+}
+
+init();
+</script>
+</body>
+</html>

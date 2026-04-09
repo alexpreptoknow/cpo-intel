@@ -1,0 +1,115 @@
+{
+  "slug": "on-power",
+  "name": "ON Power",
+  "website": "on.is",
+  "hq": "Iceland",
+  "status": "prospect",
+  "verdict": "monitor",
+  "verdictText": "ON Power just signed with Monta (Dec 2025 tender) after migrating off Etrel. They are mid-migration — so a direct sales push now would land badly. Worth monitoring for the post-Monta evaluation window, especially given their stated ambitions in truck charging and deep ecosystem integration. The home + public + workplace bundle is a genuine long-term angle.",
+  "tags": ["CPO", "Energy utility", "Iceland", "Signed Monta Dec 2025", "Mid-migration"],
+  "stats": [
+    { "label": "Public stations", "value": "200–250", "sub": "Across Iceland" },
+    { "label": "Fast chargers", "value": "53", "sub": "Rapid DC across Iceland" },
+    { "label": "Market", "value": "1", "sub": "Iceland only" },
+    { "label": "CPMS", "value": "Monta", "sub": "Signed Dec 2025 tender" }
+  ],
+  "overview": {
+    "category": "Energy utility — EV charging is one division alongside energy retail",
+    "chargingScope": "Public + home + workplace — full-stack offering",
+    "primaryUseCase": "Neighbourhood/destination charging; home subscription; workplace with employee reimbursements",
+    "dcEstimate": "53 fast charging stations; a few 100–150kW en-route; some highway",
+    "acEstimate": "Majority of 200–250 public stations are 22kW AC; home chargers via Zaptec/Easee",
+    "countries": ["Iceland"],
+    "appCountries": "Iceland"
+  },
+  "network": {
+    "totalStations": "200–250 public stations across Iceland; 53 fast charging locations",
+    "ultraFastDC": "Some 100–150kW en-route; Autel ultra-fast partnership in 2025 (truck-focused)",
+    "ac": "22kW AC dominant — neighbourhood and destination focus; few highway stations",
+    "ocpp": "Assumed standard",
+    "plugAndCharge": "Not confirmed",
+    "roaming": [
+      { "name": "Ad-hoc charging", "desc": "Via app.on.is" }
+    ],
+    "roamingNote": "Roaming not prominently featured. Iceland is a closed market — most drivers charge at home or workplace. Highway fast charging is limited by geography.",
+    "partnerships": [
+      { "label": "Etrel (Landis+Gyr)", "value": "Previous CPMS — partnership started 2023; now being migrated away from" },
+      { "label": "Monta", "value": "New CPMS — signed Dec 2025 after tender process" },
+      { "label": "Autel Europe (2025)", "value": "Ultra-fast charger partnership; truck/freight charging ambition" },
+      { "label": "Zaptec Pro / Zaptec Go", "value": "Home and workplace hardware" },
+      { "label": "Easee Charge", "value": "Home charging hardware" }
+    ]
+  },
+  "product": {
+    "app": {
+      "currentApp": "ON App (migrating — previously on Etrel app)",
+      "legacyBrand": "Etrel app (still live during migration)",
+      "payment": "App payments; subscription billing (home + workplace); one combined electricity + EV bill",
+      "subscriptions": "Home charging subscription (2,900 ISK/month single home; 4,400 ISK/month apartment); business subscriptions available",
+      "routePlanning": "Not confirmed",
+      "support": "Not specified — likely internal given utility scale",
+      "reviewNote": "Previous app (Etrel): payment problems, crashes when paying unpaid invoices, unpredictable session stops. Migration to Monta app is in progress — timeline a few months."
+    },
+    "techStack": [
+      { "cat": "CPMS (new)", "value": "Monta — signed Dec 2025 after competitive tender" },
+      { "cat": "CPMS (legacy)", "value": "Etrel (Landis+Gyr) — 2023–2025" },
+      { "cat": "Home hardware", "value": "Zaptec Pro, Zaptec Go, Easee Charge" },
+      { "cat": "DC hardware", "value": "Autel Europe (new — 2025); existing fast chargers brand TBC" },
+      { "cat": "Billing integration", "value": "EV charging billed with household electricity — single bill" },
+      { "cat": "Load balancing", "value": "Dynamic Load Management — core product feature and key selling point" }
+    ],
+    "siteHost": {
+      "targetHosts": "Businesses, stores, restaurants, housing associations, apartment blocks",
+      "revenueModel": "Subscription model — ON installs and maintains; customer pays monthly fee; station upgrades included",
+      "valueProp": "\"Charger as a subscription\" — installation, maintenance, upgrade included; cancel with 1 month notice; portable to new address",
+      "scopeConstraint": "Iceland only; rural coverage included"
+    }
+  },
+  "commercial": {
+    "revenueStreams": [
+      { "label": "Home subscriptions", "value": "2,900–4,400 ISK/month depending on property type" },
+      { "label": "Business subscriptions", "value": "Monthly retainer; DC chargers available on subscription" },
+      { "label": "Combined energy billing", "value": "EV charging bundled with household electricity bill — sticky retention mechanism" },
+      { "label": "Employee reimbursements", "value": "Home charging reimbursement for employees — B2B fleet angle" },
+      { "label": "Housing association billing", "value": "ON handles cost splitting between residents — value-add service" }
+    ],
+    "funding": [
+      { "label": "Parent", "value": "ON Power — Icelandic energy utility (Orka náttúrunnar)" },
+      { "label": "Expansion signal", "value": "Truck charging investment (Autel partnership 2025) — 'first mover' ambition" }
+    ],
+    "policy": [
+      { "label": "Market position", "value": "Dominant energy utility in Iceland; main EV charging competitors are Ísorka and Charge365" },
+      { "label": "Truck ambition", "value": "\"Our goal is to lead the energy transition and build infrastructure that supports emerging technologies — even before they reach mainstream use in Iceland.\"" }
+    ]
+  },
+  "signals": [
+    { "icon": "⚠️", "text": "<strong>Just signed Monta — Dec 2025.</strong> Mid-migration from Etrel to Monta. A direct approach now would land poorly. This is a monitoring situation — revisit once migration settles and early Monta friction surfaces." },
+    { "icon": "🔗", "text": "<strong>Ecosystem integration is the core commercial strategy.</strong> Combined electricity + EV bill, portable subscriptions, housing association billing — every feature ties the customer deeper into ON. Whatever CPMS they use must support this tightly." },
+    { "icon": "🚛", "text": "<strong>Truck charging is the next frontier.</strong> 2025 Autel partnership signals intent to be first in Iceland for truck/freight charging. This is a different CPMS requirement set — worth flagging as a future angle if Monta doesn't cover it well." },
+    { "icon": "🏠", "text": "<strong>Home + public + workplace is already live.</strong> Full-stack CPO. Any platform competing with Monta needs to cover all three use cases plus employee reimbursements and combined billing." },
+    { "icon": "📱", "text": "<strong>App quality drove the Etrel departure.</strong> Payment problems and crashes were the stated reason for switching. Monta will be on the hook for the same expectations — if Monta underdelivers, there's an opening." }
+  ],
+  "openQuestions": [
+    "What specifically triggered the Monta tender — was it primarily app quality, or CPMS feature gaps?",
+    "What are the Monta contract terms — length, exit clauses?",
+    "Is truck charging being scoped as a separate system or expected to run on the same CPMS?",
+    "Does the combined electricity + EV billing require a custom Monta integration, or is it native?",
+    "Who runs the CPMS vendor relationship at ON — CTO, Head of EV, or product team?"
+  ],
+  "synthesis": {
+    "hypotheses": [
+      { "label": "Monta will create new friction — revisit in 12–18 months", "text": "ON moved because Etrel's app quality was poor. Monta is a strong product but ON's requirements — combined billing, housing association cost splits, subscription portability, truck charging — are complex. If Monta can't deliver all of it natively, dissatisfaction will surface." },
+      { "label": "Ecosystem lock-in is the product strategy — the CPMS must support it", "text": "Every ON feature is designed to keep customers in their ecosystem (portable subscriptions, bundled billing, upgrade guarantees). A CPMS that enables more of these hooks — not fewer — would be the right pitch." },
+      { "label": "Truck charging creates a new evaluation moment", "text": "Truck charging has materially different CPMS requirements (depot management, longer sessions, load management at scale). If Monta doesn't have strong truck support, ON will look elsewhere for that vertical — creating a wedge." }
+    ],
+    "uncertainties": [
+      "Monta contract is brand new — realistic migration window is probably 2+ years away.",
+      "Iceland is a small market — absolute station numbers and revenue are modest.",
+      "Truck charging ambition may not materialize quickly enough to create near-term opportunity."
+    ],
+    "contacts": [
+      { "initials": "ON", "name": "Head of EV Charging / CTO", "title": "Identify via LinkedIn (on.is)", "note": "ON is a utility — the EV charging decision-maker is likely a divisional head, not C-suite CEO." }
+    ],
+    "contactNote": "Worth tracking the Monta rollout via app store reviews and LinkedIn activity. Re-engage when migration dust settles (estimate: late 2026)."
+  }
+}

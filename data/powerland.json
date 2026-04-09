@@ -1,0 +1,120 @@
+{
+  "slug": "powerland",
+  "name": "Powerland",
+  "website": "powerland.be",
+  "hq": "Belgium",
+  "type": "CPO / Installer",
+  "lastUpdated": "March 2025",
+  "tags": ["CPO", "Installer model", "Belgium / France", "Low priority"],
+  "tagStyles": ["cpo", "signal", "eu", "low"],
+
+  "stats": [
+    { "label": "Roaming access", "value": "375k+", "sub": "Stations via EMSP card" },
+    { "label": "Kempower plugs", "value": "200+",  "sub": "Installed for clients" },
+    { "label": "Use cases",      "value": "9+",    "sub": "From trucks to maritime" },
+    { "label": "Parent group",   "value": "Vandotec", "sub": "Since 1978 (gas stations)" }
+  ],
+
+  "overview": {
+    "businessType": [
+      { "label": "Category",        "value": "CPO with strong installer identity — Vandotec Group subsidiary" },
+      { "label": "Charging scope",  "value": "Full spectrum: workplace, truck, municipal, residential, gas stations, hospitality, home, maritime" },
+      { "label": "Primary use case","value": "Destination charging + energy management bundles (BESS + solar + EV)" },
+      { "label": "Business model",  "value": "Revenue = more installations, more hardware sold, more maintenance contracts" },
+      { "label": "Fleet / home",    "value": "Yes — home reimbursement for employees; pre/post-paid fleet subscriptions" }
+    ],
+    "countries": ["Belgium", "Luxembourg", "France"],
+    "countriesNote": "BeLux and France confirmed — Kempower partnership covers these markets."
+  },
+
+  "network": {
+    "composition": [
+      { "label": "Network size",   "value": "Not publicly disclosed — estimated small-to-mid CPO" },
+      { "label": "OCPP",          "value": "All AC and DC stations confirmed OCPP compliant" },
+      { "label": "Hardware used",  "value": "Alpitronic, Kempower, Etrel Inch, Smappee, Wallbox" },
+      { "label": "Roaming",       "value": "375,000 stations via EMSP card — below market average (most hubs at ~1M+)" }
+    ],
+    "roaming": [
+      { "name": "EMSP card",    "desc": "375k stations — limited" },
+      { "name": "Pre/post-paid","desc": "Subscription options" }
+    ],
+    "roamingNote": "375k roaming stations suggests a cheaper EMSP provider. Roaming is unlikely a revenue driver — more of a checkbox to close contracts.",
+    "partnerships": [
+      { "label": "Kempower",  "value": "200+ plugs installed across BeLux and France" },
+      { "label": "Keolis",    "value": "Transport operator project (confirmed case study)" },
+      { "label": "N-ICE Clean","value": "Clean mobility project" }
+    ]
+  },
+
+  "product": {
+    "app": [
+      { "label": "App",            "value": "Exists — CPMS platform unconfirmed from app screenshots" },
+      { "label": "Payment",        "value": "Pre-paid and post-paid subscriptions" },
+      { "label": "QR code",        "value": "Not observed — potential gap" },
+      { "label": "Home reimb.",    "value": "Yes — settle employee home charging costs with company" }
+    ],
+    "appNote": "CPMS platform not recognisable from app screenshots — may be a cheap local or custom solution.",
+    "stack": [
+      { "label": "CPMS",            "value": "Unknown — likely cheap local or custom" },
+      { "label": "Energy mgmt",     "value": "Custom integration — smart energy management system linked to chargers" },
+      { "label": "BESS",            "value": "Battery storage with Day Ahead Market Arbitrage capability" },
+      { "label": "Hardware",        "value": "Alpitronic, Kempower, Etrel Inch, Smappee, Wallbox" }
+    ],
+    "cpms": "Unknown (likely low-cost or custom)",
+    "siteHost": [
+      { "label": "Target hosts",  "value": "Gas stations, shopping centres, hotels, parking lots, transport companies" },
+      { "label": "Model",         "value": "Turn-key: Powerland installs, maintains, and manages — client pays monthly or per-session" },
+      { "label": "Energy bundle", "value": "Can include BESS + solar + EV charging in one contract" },
+      { "label": "Subsidies",     "value": "Active support for clients to secure government subsidies and funding" }
+    ]
+  },
+
+  "commercial": {
+    "revenue": [
+      { "label": "Hardware sales",      "value": "Primary revenue — installations and hardware margin" },
+      { "label": "Maintenance",         "value": "Monthly service contracts — in-house technical service team" },
+      { "label": "Subscriptions",       "value": "Pre/post-paid driver plans — likely low-margin add-on" },
+      { "label": "BESS / Day Ahead",    "value": "Battery arbitrage as USP — ROI probably modest given limited promotion" },
+      { "label": "Roaming",             "value": "Minimal — cheap EMSP likely used as checkbox, not revenue source" }
+    ],
+    "funding": [
+      { "label": "Parent",        "value": "Vandotec Group — gas station infrastructure since 1978" },
+      { "label": "Mindset",       "value": "\"We installed gas stations, now we install EV chargers\" — capex-heavy, margin-on-hardware model" }
+    ],
+    "policy": []
+  },
+
+  "signals": {
+    "salesSignals": [
+      { "icon": "⚠️", "text": "Installer-first mindset. Revenue = hardware + maintenance contracts. Monthly software fees are seen as a cost, not an investment. Price sensitivity will be high." },
+      { "icon": "🔧", "text": "Operational complexity at scale. Managing many client sites from a single platform is genuinely difficult. If they're using a cheap/custom CPMS, this could be a real pain point as the client base grows." },
+      { "icon": "💡", "text": "New revenue streams as an angle. BESS, Day Ahead trading, roaming — these are already on their radar. A CPMS that unlocks better roaming revenue or dynamic pricing could be positioned as a growth tool, not just an ops tool." },
+      { "icon": "🏠", "text": "Employee home charging reimbursement is already offered — suggesting some CPMS capability exists. Worth understanding what that looks like today and where it breaks down." }
+    ],
+    "openQuestions": [
+      "What CPMS are they currently using? Is it vendor-supplied with the hardware, or independently chosen?",
+      "How much revenue do they actually generate from monthly subscriptions vs hardware sales?",
+      "Is the Day Ahead arbitrage feature generating meaningful ROI, or is it a sales tool only?",
+      "How many active client sites are they managing — and what are the biggest ops headaches?",
+      "Are they planning to expand roaming and improve driver-facing services, or is that not a priority?"
+    ]
+  },
+
+  "synthesis": {
+    "verdict": "low priority",
+    "verdictText": "Powerland operates with an installer mindset — revenue comes from hardware and maintenance, not software subscriptions. Monthly CPMS fees will be scrutinised heavily. Not worth active pursuit unless there is confirmed evidence that subscription/roaming revenue is growing and operational complexity is becoming a bottleneck.",
+    "hypotheses": [
+      { "label": "Hypothesis 1 — Software is a cost centre, not a growth lever", "text": "Coming from a gas station installation background, Vandotec/Powerland will view CPMS as a necessary overhead rather than a strategic tool. The conversation needs to reframe CPMS as a revenue enabler (roaming, better utilisation, customer retention) to get traction." },
+      { "label": "Hypothesis 2 — Multi-client management is the latent pain point", "text": "If they're managing hundreds of client sites from a weak platform, the operational pain grows non-linearly. A CPMS demo focused on multi-site client management (white-label portals, per-client billing) might resonate more than driver app features." }
+    ],
+    "uncertainties": [
+      "Monthly subscription revenue volume unknown — if it's negligible, there's no business case for a premium CPMS.",
+      "CPMS identity unknown — if bundled with hardware (e.g. Smappee's platform), switching has added friction.",
+      "Company size and team structure unclear — procurement decisions may sit with a single technical founder."
+    ],
+    "contacts": [
+      { "initials": "VG", "name": "Vandotec Group contact", "title": "CTO / Head of Operations", "note": "Identify via LinkedIn — look for technical or product ownership roles within Powerland specifically." }
+    ],
+    "contactsNote": "Approach via the operational angle — not strategy. The person who manages client sites day-to-day is the most likely champion."
+  }
+}
