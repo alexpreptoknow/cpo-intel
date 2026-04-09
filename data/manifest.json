@@ -2,6 +2,6 @@
   { "slug": "allego",       "name": "Allego",        "country": "Netherlands", "status": "ready" },
   { "slug": "esb",          "name": "ESB eCars",     "country": "Ireland",     "status": "ready" },
   { "slug": "powerland",    "name": "Powerland",     "country": "Belgium",     "status": "ready" },
-  { "slug": "remo",         "name": "Remo Mobility", "country": "Portugal",    "status": "ready" }
-  { "slug": "onpower",         "name": "On Power", "country": "Iceland",    "status": "ready" }
+  { "slug": "remo",         "name": "Remo Mobility", "country": "Portugal",    "status": "ready" },
+  { "slug": "on-power",     "name": "ON Power",      "country": "Iceland",     "status": "ready" }
 ]
