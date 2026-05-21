@@ -27,11 +27,11 @@
     <p>Select a company to view the full profile.</p>
   </div>
   <div class="view-toggle">
-    <button class="vtoggle active" onclick="setView('human',this)">Human Reports</button>
-    <button class="vtoggle" onclick="setView('ai',this)">AI Analysis</button>
+    <button class="vtoggle" onclick="setView('human',this)">Human Reports</button>
+    <button class="vtoggle active" onclick="setView('ai',this)">AI Analysis</button>
   </div>
-  <div class="cpo-grid" id="grid-human"></div>
-  <div class="cpo-grid" id="grid-ai" style="display:none"></div>
+  <div class="cpo-grid" id="grid-human" style="display:none"></div>
+  <div class="cpo-grid" id="grid-ai"></div>
 </div>
 
 <script>
@@ -60,24 +60,27 @@ async function init() {
   let aiCount = 0;
 
   for (const item of manifest) {
-    const data = await fetch(`data/${item.slug}.json`).then(r => r.json());
-    const vm = VERDICT_META[data.synthesis.verdict] || { cls: "dot-monitor", label: data.synthesis.verdict };
     const initials = item.name.split(' ').map(w => w[0]).join('').slice(0,2).toUpperCase();
 
-    const card = document.createElement('a');
-    card.className = 'cpo-card';
-    card.href = `profile.html?cpo=${item.slug}`;
-    card.innerHTML = `
-      <div class="cpo-card-logo">${initials}</div>
-      <div class="cpo-card-name">${item.name}</div>
-      <div class="cpo-card-sub">${item.country} · ${data.type}</div>
-      <div class="badges" style="margin-bottom:10px">
-        ${data.tags.map((t,i) => `<span class="badge ${TAG_STYLE_MAP[data.tagStyles[i]] || 'b-eu'}">${t}</span>`).join('')}
-      </div>
-      <div style="font-size:12px;color:#555">
-        <span class="verdict-dot ${vm.cls}"></span>${vm.label}
-      </div>`;
-    humanGrid.appendChild(card);
+    if (item.status !== 'ai-only') {
+      const data = await fetch(`data/${item.slug}.json`).then(r => r.json());
+      const vm = VERDICT_META[data.synthesis.verdict] || { cls: "dot-monitor", label: data.synthesis.verdict };
+
+      const card = document.createElement('a');
+      card.className = 'cpo-card';
+      card.href = `profile.html?cpo=${item.slug}`;
+      card.innerHTML = `
+        <div class="cpo-card-logo">${initials}</div>
+        <div class="cpo-card-name">${item.name}</div>
+        <div class="cpo-card-sub">${item.country} · ${data.type}</div>
+        <div class="badges" style="margin-bottom:10px">
+          ${data.tags.map((t,i) => `<span class="badge ${TAG_STYLE_MAP[data.tagStyles[i]] || 'b-eu'}">${t}</span>`).join('')}
+        </div>
+        <div style="font-size:12px;color:#555">
+          <span class="verdict-dot ${vm.cls}"></span>${vm.label}
+        </div>`;
+      humanGrid.appendChild(card);
+    }
 
     if (item.hasAiAnalysis) {
       aiCount++;
