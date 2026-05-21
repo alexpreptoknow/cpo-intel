@@ -56,13 +56,13 @@ function alexConclusionsBlock(html, label = 'Alex Conclusions') {
 // ── AI analysis markdown helpers ──
 
 const AI_TABS = [
-  { id: 'ai-overview',   label: 'Overview'      },
-  { id: 'ai-network',    label: 'Network'       },
-  { id: 'ai-product',    label: 'Product'       },
-  { id: 'ai-commercial', label: 'Commercial'    },
-  { id: 'ai-signals',    label: 'Signals'       },
-  { id: 'ai-synthesis',  label: 'Synthesis'     },
-  { id: 'ai-full',       label: 'Full Analysis' },
+  { id: 'ai-full',       label: 'Full Analysis'  },
+  { id: 'ai-synthesis',  label: 'Sales Insights' },
+  { id: 'ai-overview',   label: 'Overview'       },
+  { id: 'ai-network',    label: 'Network'        },
+  { id: 'ai-product',    label: 'Product'        },
+  { id: 'ai-commercial', label: 'Commercial'     },
+  { id: 'ai-signals',    label: 'Signals'        },
 ];
 
 function parseAiAnalysis(md) {
@@ -352,8 +352,8 @@ function switchTab(id, el) {
   if (el) el.classList.add('active');
   // When re-entering the AI Analysis outer tab, restore the first inner tab
   if (id === 'ai-analysis') {
-    document.getElementById('panel-ai-overview')?.classList.add('active');
-    document.querySelector('[data-id="ai-overview"]')?.classList.add('active');
+    document.getElementById('panel-ai-full')?.classList.add('active');
+    document.querySelector('[data-id="ai-full"]')?.classList.add('active');
   }
 }
 
