@@ -189,3 +189,10 @@ a { color: #1a6bb5; }
 .ai-analysis-body th { background: #f8f8f6; font-weight: 700; text-align: left; padding: 8px 12px; border: 1px solid #e5e4e0; }
 .ai-analysis-body td { padding: 7px 12px; border: 1px solid #e5e4e0; }
 .ai-analysis-body tr:hover td { background: #fafaf8; }
+
+/* ── AI Analysis Metadata Strip ── */
+.ai-metadata-strip { display: flex; flex-wrap: wrap; gap: 6px 20px; margin-bottom: 1.25rem; padding-bottom: 1rem; border-bottom: 1px solid #e5e4e0; }
+.ai-meta-item { display: inline-flex; gap: 5px; align-items: baseline; }
+.ai-meta-label { font-weight: 700; color: #aaa; text-transform: uppercase; letter-spacing: 0.04em; font-size: 10px; }
+.ai-meta-value { color: #666; font-size: 12px; }
+#panel-ai-analysis .tabs { margin-top: 0.5rem; }

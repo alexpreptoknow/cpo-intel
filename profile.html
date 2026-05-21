@@ -43,14 +43,86 @@ function card(title, content) {
   return `<div class="card"><h3>${title}</h3>${content}</div>`;
 }
 
-function alexConclusionsBlock(html) {
+function alexConclusionsBlock(html, label = 'Alex Conclusions') {
   const t = html == null ? '' : String(html).trim();
   if (!t) return '';
   return `
-    <section class="alex-conclusions" aria-label="Alex Conclusions">
-      <div class="alex-conclusions-label">Alex Conclusions</div>
+    <section class="alex-conclusions" aria-label="${label}">
+      <div class="alex-conclusions-label">${label}</div>
       <div class="alex-conclusions-body">${t}</div>
     </section>`;
+}
+
+// ── AI analysis markdown helpers ──
+
+const AI_TABS = [
+  { id: 'ai-overview',   label: 'Overview'      },
+  { id: 'ai-network',    label: 'Network'       },
+  { id: 'ai-product',    label: 'Product'       },
+  { id: 'ai-commercial', label: 'Commercial'    },
+  { id: 'ai-signals',    label: 'Signals'       },
+  { id: 'ai-synthesis',  label: 'Synthesis'     },
+  { id: 'ai-full',       label: 'Full Analysis' },
+];
+
+function parseAiAnalysis(md) {
+  const sections = {};
+  const firstH2 = md.indexOf('\n## ');
+  const preamble = (firstH2 > -1 ? md.slice(0, firstH2) : md)
+    .split('\n').filter(l => !l.startsWith('# ')).join('\n').trim();
+  sections['_metadata'] = preamble;
+  sections['_raw'] = md;
+  for (const part of md.split(/\n(?=## )/)) {
+    const m = part.match(/^## (.+)/);
+    if (!m) continue;
+    sections[m[1].trim()] = part.slice(m[0].length).trim();
+  }
+  return sections;
+}
+
+function renderMetadataStrip(text) {
+  const fields = ['Date', 'Analyst', 'Source', 'Coverage'];
+  const items = fields.map(f => {
+    const m = text.match(new RegExp(`\\*\\*${f}:\\*\\*\\s*(.+)`));
+    return m ? `<span class="ai-meta-item"><span class="ai-meta-label">${f}</span><span class="ai-meta-value">${m[1].trim()}</span></span>` : '';
+  }).filter(Boolean);
+  return items.length ? `<div class="ai-metadata-strip">${items.join('')}</div>` : '';
+}
+
+function renderAlexNotes(sections) {
+  const body = sections['Alex Notes'];
+  if (!body || !body.trim()) return '';
+  return alexConclusionsBlock(marked.parse(body), 'Alex Notes');
+}
+
+function sectionHtml(sections, ...headings) {
+  return headings
+    .map(h => sections[h] ? `## ${h}\n${sections[h]}` : '')
+    .filter(Boolean).join('\n\n');
+}
+
+function renderTabContent(sections, ...headings) {
+  const md = sectionHtml(sections, ...headings);
+  if (!md.trim()) return '<p class="muted-note" style="padding:.5rem 0">No data available for this section.</p>';
+  return `<div class="ai-analysis-body card">${marked.parse(md)}</div>`;
+}
+
+function renderFullAnalysis(sections) {
+  const stripped = (sections['_raw'] || '').replace(/^# .+\n/, '');
+  return `<div class="ai-analysis-body card">${marked.parse(stripped)}</div>`;
+}
+
+function buildAiTabBar() {
+  return `<div class="tabs">${AI_TABS.map((t, i) =>
+    `<button class="tab tab-ai${i === 0 ? ' active' : ''}" data-id="${t.id}" onclick="switchAiTab('${t.id}',this)">${t.label}</button>`
+  ).join('')}</div>`;
+}
+
+function switchAiTab(id, el) {
+  AI_TABS.forEach(t => document.getElementById('panel-' + t.id)?.classList.remove('active'));
+  document.querySelectorAll('.tab-ai').forEach(t => t.classList.remove('active'));
+  document.getElementById('panel-' + id)?.classList.add('active');
+  if (el) el.classList.add('active');
 }
 
 async function init() {
@@ -242,17 +314,34 @@ async function init() {
 }
 
 async function loadAiAnalysis(slug) {
+  const fallback = () => {
+    const el = document.getElementById('ai-analysis-content');
+    if (el) el.innerHTML = '<p class="muted-note">No AI analysis available for this company yet.</p>';
+  };
   try {
     const res = await fetch(`data/ai-analysis/${slug}.md`);
-    if (!res.ok) {
-      document.getElementById('ai-analysis-content').innerHTML = '<p class="muted-note">No AI analysis available for this company yet.</p>';
-      return;
-    }
-    const md = await res.text();
-    document.getElementById('ai-analysis-content').innerHTML = marked.parse(md);
-  } catch(e) {
-    document.getElementById('ai-analysis-content').innerHTML = '<p class="muted-note">No AI analysis available for this company yet.</p>';
-  }
+    if (!res.ok) { fallback(); return; }
+    const sections = parseAiAnalysis(await res.text());
+
+    const panelHtml = AI_TABS.map((t, i) => {
+      let content;
+      if      (t.id === 'ai-full')       content = renderFullAnalysis(sections);
+      else if (t.id === 'ai-overview')   content = renderTabContent(sections, 'Company Profile', 'Parent Company & Corporate Context', 'Network Size');
+      else if (t.id === 'ai-network')    content = renderTabContent(sections, 'Geographic Intelligence');
+      else if (t.id === 'ai-product')    content = renderTabContent(sections, 'CPMS Identification', 'App Quality');
+      else if (t.id === 'ai-commercial') content = renderTabContent(sections, 'Business Model');
+      else if (t.id === 'ai-signals')    content = renderTabContent(sections, 'Business Gaps', 'Competitive Position', 'Research Gaps & Unresolved');
+      else if (t.id === 'ai-synthesis')  content = renderTabContent(sections, 'Synthesis', 'Strategic Context', 'Development Stage & Trajectory');
+      return `<div id="panel-${t.id}" class="panel${i === 0 ? ' active' : ''}">${content}</div>`;
+    }).join('');
+
+    document.getElementById('panel-ai-analysis').innerHTML = `
+      <span class="ai-analysis-badge">AI Generated</span>
+      ${renderMetadataStrip(sections['_metadata'] || '')}
+      ${renderAlexNotes(sections)}
+      ${buildAiTabBar()}
+      ${panelHtml}`;
+  } catch(e) { fallback(); }
 }
 
 function switchTab(id, el) {
@@ -261,6 +350,11 @@ function switchTab(id, el) {
   const panel = document.getElementById('panel-' + id);
   if (panel) panel.classList.add('active');
   if (el) el.classList.add('active');
+  // When re-entering the AI Analysis outer tab, restore the first inner tab
+  if (id === 'ai-analysis') {
+    document.getElementById('panel-ai-overview')?.classList.add('active');
+    document.querySelector('[data-id="ai-overview"]')?.classList.add('active');
+  }
 }
 
 init();
