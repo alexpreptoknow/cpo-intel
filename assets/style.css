@@ -156,3 +156,36 @@ a { color: #1a6bb5; }
 .cpo-card-logo { width: 40px; height: 40px; border-radius: 50%; background: #0055a5; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; margin-bottom: 10px; }
 .cpo-card-name { font-size: 16px; font-weight: 700; margin-bottom: 2px; }
 .cpo-card-sub { font-size: 12px; color: #888; margin-bottom: 10px; }
+
+/* ── View toggle ── */
+.view-toggle { display: flex; background: #ebe9e4; border-radius: 8px; padding: 3px; gap: 2px; margin-bottom: 1.5rem; width: fit-content; }
+.vtoggle { font-size: 13px; font-weight: 500; padding: 7px 18px; border-radius: 6px; border: none; background: transparent; color: #666; cursor: pointer; transition: background .15s, color .15s; }
+.vtoggle.active { background: #fff; color: #1a1a18; box-shadow: 0 1px 3px rgba(0,0,0,.1); }
+.vtoggle:hover:not(.active) { color: #1a1a18; }
+
+/* ── AI card variant ── */
+.cpo-card-logo-ai { background: #7c3aed; }
+.ai-card-tag { font-size: 11px; font-weight: 600; color: #7c3aed; background: #ede9fe; padding: 3px 10px; border-radius: 999px; display: inline-block; margin-top: 10px; }
+.ai-grid-empty { color: #888; font-size: 14px; grid-column: 1/-1; padding: 2rem 0; }
+
+/* ── AI Analysis tab accent ── */
+.tab-ai.active { color: #7c3aed; border-bottom-color: #7c3aed; }
+
+/* ── AI Analysis content ── */
+.ai-analysis-badge { font-size: 11px; font-weight: 700; color: #7c3aed; background: #ede9fe; padding: 3px 10px; border-radius: 999px; display: inline-block; margin-bottom: 1.25rem; }
+.ai-analysis-body { font-size: 14px; line-height: 1.75; color: #2c2c28; }
+.ai-analysis-body h1 { font-size: 20px; font-weight: 700; margin: 1.5rem 0 .75rem; }
+.ai-analysis-body h2 { font-size: 16px; font-weight: 700; margin: 1.5rem 0 .6rem; color: #1a1a18; border-bottom: 1px solid #e5e4e0; padding-bottom: 6px; }
+.ai-analysis-body h3 { font-size: 14px; font-weight: 700; margin: 1rem 0 .5rem; }
+.ai-analysis-body p { margin-bottom: .75rem; }
+.ai-analysis-body ul, .ai-analysis-body ol { padding-left: 1.5rem; margin-bottom: .75rem; }
+.ai-analysis-body li { margin-bottom: .35rem; }
+.ai-analysis-body strong { font-weight: 700; }
+.ai-analysis-body em { font-style: italic; }
+.ai-analysis-body hr { border: none; border-top: 1px solid #e5e4e0; margin: 1.5rem 0; }
+.ai-analysis-body blockquote { border-left: 3px solid #a78bfa; background: #faf5ff; padding: 8px 14px; border-radius: 0 8px 8px 0; margin-bottom: .75rem; color: #4c1d95; }
+.ai-analysis-body code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 12px; background: #f1f5f9; padding: 2px 5px; border-radius: 4px; }
+.ai-analysis-body table { border-collapse: collapse; width: 100%; margin-bottom: .75rem; font-size: 13px; }
+.ai-analysis-body th { background: #f8f8f6; font-weight: 700; text-align: left; padding: 8px 12px; border: 1px solid #e5e4e0; }
+.ai-analysis-body td { padding: 7px 12px; border: 1px solid #e5e4e0; }
+.ai-analysis-body tr:hover td { background: #fafaf8; }

@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CPO Profile</title>
 <link rel="stylesheet" href="assets/style.css">
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
 
@@ -66,7 +67,36 @@ async function init() {
 
   if (!slug) { document.getElementById('app').innerHTML = '<p>No CPO selected.</p>'; return; }
 
-  const d = await fetch(`data/${slug}.json`).then(r => r.json());
+  // Try to load the human-report JSON; fall back to AI-only mode if absent
+  let d = null;
+  try {
+    const res = await fetch(`data/${slug}.json`);
+    if (res.ok) d = await res.json();
+  } catch(e) {}
+
+  if (!d) {
+    // AI-only mode — no JSON profile exists, render just the AI analysis
+    const entry = manifest.find(m => m.slug === slug) || { name: slug, country: '' };
+    const initials = entry.name.split(' ').map(w => w[0]).join('').slice(0,2).toUpperCase();
+    document.title = `${entry.name} — CPO Intel`;
+    document.getElementById('app').innerHTML = `
+      <div class="header">
+        <div class="logo cpo-card-logo-ai">${initials}</div>
+        <div class="header-meta">
+          <h1>${entry.name}</h1>
+          <div class="sub">${entry.country} &nbsp;·&nbsp; <span style="color:#7c3aed;font-weight:600">AI Analysis</span></div>
+        </div>
+      </div>
+      <div id="panel-ai-analysis" class="panel active">
+        <span class="ai-analysis-badge">AI Generated</span>
+        <div id="ai-analysis-content" class="ai-analysis-body card">
+          <p class="muted-note">Loading analysis…</p>
+        </div>
+      </div>`;
+    loadAiAnalysis(slug);
+    return;
+  }
+
   document.title = `${d.name} — CPO Intel`;
 
   const vm = VERDICT_META[d.synthesis.verdict] || VERDICT_META["monitor"];
@@ -85,8 +115,9 @@ async function init() {
 
     <div class="tabs">
       ${['overview','network','product','commercial','signals','synthesis'].map(id=>
-        `<button class="tab" onclick="switchTab('${id}',this)">${id.charAt(0).toUpperCase()+id.slice(1)}</button>`
+        `<button class="tab" data-id="${id}" onclick="switchTab('${id}',this)">${id.charAt(0).toUpperCase()+id.slice(1)}</button>`
       ).join('')}
+      <button class="tab tab-ai" data-id="ai-analysis" onclick="switchTab('ai-analysis',this)">AI Analysis</button>
     </div>
 
     <!-- OVERVIEW -->
@@ -158,6 +189,14 @@ async function init() {
       </div>
     </div>
 
+    <!-- AI ANALYSIS -->
+    <div id="panel-ai-analysis" class="panel">
+      <span class="ai-analysis-badge">AI Generated</span>
+      <div id="ai-analysis-content" class="ai-analysis-body card">
+        <p class="muted-note">Loading analysis…</p>
+      </div>
+    </div>
+
     <!-- SYNTHESIS -->
     <div id="panel-synthesis" class="panel">
       <div class="verdict-wrap ${vm.cls}">
@@ -188,9 +227,32 @@ async function init() {
 
   document.getElementById('app').innerHTML = html;
 
-  // Activate first tab
-  const firstTab = document.querySelector('.tab');
-  if (firstTab) switchTab('overview', firstTab);
+  // Activate tab from URL param or default to overview
+  const urlTab = params.get('tab');
+  if (urlTab) {
+    const targetTab = document.querySelector(`.tab[data-id="${urlTab}"]`);
+    if (targetTab) { switchTab(urlTab, targetTab); }
+    else { const firstTab = document.querySelector('.tab'); if (firstTab) switchTab('overview', firstTab); }
+  } else {
+    const firstTab = document.querySelector('.tab');
+    if (firstTab) switchTab('overview', firstTab);
+  }
+
+  loadAiAnalysis(slug);
+}
+
+async function loadAiAnalysis(slug) {
+  try {
+    const res = await fetch(`data/ai-analysis/${slug}.md`);
+    if (!res.ok) {
+      document.getElementById('ai-analysis-content').innerHTML = '<p class="muted-note">No AI analysis available for this company yet.</p>';
+      return;
+    }
+    const md = await res.text();
+    document.getElementById('ai-analysis-content').innerHTML = marked.parse(md);
+  } catch(e) {
+    document.getElementById('ai-analysis-content').innerHTML = '<p class="muted-note">No AI analysis available for this company yet.</p>';
+  }
 }
 
 function switchTab(id, el) {
@@ -203,5 +265,7 @@ function switchTab(id, el) {
 
 init();
 </script>
+<!-- Optional: <script>window.VISITOR_TRACKER={ allowedCountry:'BG', allowedIps:[], notifyUrl:'' };</script> -->
+<script src="assets/visitor-tracker.js"></script>
 </body>
 </html>

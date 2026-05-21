@@ -1,7 +1,12 @@
 [
-  { "slug": "allego",       "name": "Allego",        "country": "Netherlands", "status": "ready" },
-  { "slug": "esb",          "name": "ESB eCars",     "country": "Ireland",     "status": "ready" },
-  { "slug": "powerland",    "name": "Powerland",     "country": "Belgium",     "status": "ready" },
-  { "slug": "remo",         "name": "Remo Mobility", "country": "Portugal",    "status": "ready" },
-  { "slug": "on-power",     "name": "ON Power",      "country": "Iceland",     "status": "ready" }
+  { "slug": "allego",        "name": "Allego",           "country": "Netherlands", "status": "ready",   "hasAiAnalysis": false },
+  { "slug": "esb",           "name": "ESB eCars",        "country": "Ireland",     "status": "ready",   "hasAiAnalysis": false },
+  { "slug": "powerland",     "name": "Powerland",        "country": "Belgium",     "status": "ready",   "hasAiAnalysis": false },
+  { "slug": "remo",          "name": "Remo Mobility",    "country": "Portugal",    "status": "ready",   "hasAiAnalysis": false },
+  { "slug": "on-power",      "name": "ON Power",         "country": "Iceland",     "status": "ready",   "hasAiAnalysis": false },
+  { "slug": "circle-k",      "name": "Circle K",         "country": "Norway",      "status": "ai-only", "hasAiAnalysis": true  },
+  { "slug": "omv",           "name": "OMV",              "country": "Austria",     "status": "ai-only", "hasAiAnalysis": true  },
+  { "slug": "orlen",         "name": "Orlen",            "country": "Poland",      "status": "ai-only", "hasAiAnalysis": true  },
+  { "slug": "totalenergies", "name": "TotalEnergies",    "country": "France",      "status": "ai-only", "hasAiAnalysis": true  },
+  { "slug": "gruppe-schwarz","name": "Gruppe Schwarz",   "country": "Germany",     "status": "ai-only", "hasAiAnalysis": true  }
 ]

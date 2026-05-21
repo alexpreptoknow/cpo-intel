@@ -26,7 +26,12 @@
     <h1>CPO Research</h1>
     <p>Select a company to view the full profile.</p>
   </div>
-  <div class="cpo-grid" id="grid"></div>
+  <div class="view-toggle">
+    <button class="vtoggle active" onclick="setView('human',this)">Human Reports</button>
+    <button class="vtoggle" onclick="setView('ai',this)">AI Analysis</button>
+  </div>
+  <div class="cpo-grid" id="grid-human"></div>
+  <div class="cpo-grid" id="grid-ai" style="display:none"></div>
 </div>
 
 <script>
@@ -40,10 +45,19 @@ const TAG_STYLE_MAP = {
   cpo: "b-cpo", pub: "b-pub", eu: "b-eu", signal: "b-signal", tech: "b-tech", low: "b-low"
 };
 
+function setView(view, el) {
+  document.querySelectorAll('.vtoggle').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('grid-human').style.display = view === 'human' ? '' : 'none';
+  document.getElementById('grid-ai').style.display = view === 'ai' ? '' : 'none';
+}
+
 async function init() {
   const res = await fetch('data/manifest.json');
   const manifest = await res.json();
-  const grid = document.getElementById('grid');
+  const humanGrid = document.getElementById('grid-human');
+  const aiGrid = document.getElementById('grid-ai');
+  let aiCount = 0;
 
   for (const item of manifest) {
     const data = await fetch(`data/${item.slug}.json`).then(r => r.json());
@@ -63,11 +77,30 @@ async function init() {
       <div style="font-size:12px;color:#555">
         <span class="verdict-dot ${vm.cls}"></span>${vm.label}
       </div>`;
-    grid.appendChild(card);
+    humanGrid.appendChild(card);
+
+    if (item.hasAiAnalysis) {
+      aiCount++;
+      const aiCard = document.createElement('a');
+      aiCard.className = 'cpo-card';
+      aiCard.href = `profile.html?cpo=${item.slug}&tab=ai-analysis`;
+      aiCard.innerHTML = `
+        <div class="cpo-card-logo cpo-card-logo-ai">${initials}</div>
+        <div class="cpo-card-name">${item.name}</div>
+        <div class="cpo-card-sub">${item.country}</div>
+        <span class="ai-card-tag">AI Analysis</span>`;
+      aiGrid.appendChild(aiCard);
+    }
+  }
+
+  if (aiCount === 0) {
+    aiGrid.innerHTML = '<p class="ai-grid-empty">No AI analyses uploaded yet — add <code>.md</code> files to <code>data/ai-analysis/</code> and set <code>hasAiAnalysis: true</code> in manifest.json.</p>';
   }
 }
- 
+
 init();
 </script>
+<!-- Optional: <script>window.VISITOR_TRACKER={ allowedCountry:'BG', allowedIps:[], notifyUrl:'' };</script> -->
+<script src="assets/visitor-tracker.js"></script>
 </body>
 </html>
