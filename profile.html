@@ -6,6 +6,15 @@
 <title>CPO Profile</title>
 <link rel="stylesheet" href="assets/style.css">
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script>
+  // Escape lone single-tilde so marked doesn't treat "~text~" as strikethrough.
+  // ~~text~~ (double-tilde) still renders as strikethrough.
+  (function () {
+    const _origParse = marked.parse.bind(marked);
+    marked.parse = (md, ...rest) =>
+      _origParse(String(md || '').replace(/(^|[^~])~(?!~)/g, '$1\\~'), ...rest);
+  })();
+</script>
 </head>
 <body>
 
@@ -14,6 +23,7 @@
   <select class="topnav-select" id="cpo-switcher" onchange="navigate(this.value)">
     <option value="">Loading...</option>
   </select>
+  <a class="topnav-logout" href="/logout">Log out</a>
 </nav>
 
 <div class="layout" id="app">
@@ -160,12 +170,15 @@ async function init() {
         </div>
       </div>
       <div id="panel-ai-analysis" class="panel active">
-        <span class="ai-analysis-badge">AI Generated</span>
-        <div id="ai-analysis-content" class="ai-analysis-body card">
+        <div class="ai-analysis-header">
+          <span class="ai-analysis-badge">AI Generated</span>
+          <div id="ai-version-selector" class="ai-version-selector"></div>
+        </div>
+        <div id="ai-analysis-content">
           <p class="muted-note">Loading analysis…</p>
         </div>
       </div>`;
-    loadAiAnalysis(slug);
+    loadAiAnalysis(slug, entry.aiVersions);
     return;
   }
 
@@ -263,8 +276,11 @@ async function init() {
 
     <!-- AI ANALYSIS -->
     <div id="panel-ai-analysis" class="panel">
-      <span class="ai-analysis-badge">AI Generated</span>
-      <div id="ai-analysis-content" class="ai-analysis-body card">
+      <div class="ai-analysis-header">
+        <span class="ai-analysis-badge">AI Generated</span>
+        <div id="ai-version-selector" class="ai-version-selector"></div>
+      </div>
+      <div id="ai-analysis-content">
         <p class="muted-note">Loading analysis…</p>
       </div>
     </div>
@@ -310,38 +326,62 @@ async function init() {
     if (firstTab) switchTab('overview', firstTab);
   }
 
-  loadAiAnalysis(slug);
+  const manifestEntry = manifest.find(m => m.slug === slug);
+  loadAiAnalysis(slug, manifestEntry?.aiVersions);
 }
 
-async function loadAiAnalysis(slug) {
-  const fallback = () => {
-    const el = document.getElementById('ai-analysis-content');
-    if (el) el.innerHTML = '<p class="muted-note">No AI analysis available for this company yet.</p>';
-  };
+function renderVersionSelector(slug, versions, activeFile) {
+  const host = document.getElementById('ai-version-selector');
+  if (!host) return;
+  if (!versions || versions.length < 2) { host.innerHTML = ''; return; }
+  host.innerHTML = `
+    <span class="ai-version-selector-label">Version</span>
+    <select class="ai-version-select" onchange="loadAiAnalysisFile('${slug}', this.value)">
+      ${versions.map(v => `<option value="${v.file}" ${v.file === activeFile ? 'selected' : ''}>${v.label}</option>`).join('')}
+    </select>`;
+}
+
+async function loadAiAnalysisFile(slug, file) {
+  const content = document.getElementById('ai-analysis-content');
+  if (!content) return;
+  content.innerHTML = '<p class="muted-note">Loading analysis…</p>';
   try {
-    const res = await fetch(`data/ai-analysis/${slug}.md`);
-    if (!res.ok) { fallback(); return; }
+    const res = await fetch(`data/ai-analysis/${file}`);
+    if (!res.ok) {
+      content.innerHTML = '<p class="muted-note">No AI analysis available for this company yet.</p>';
+      return;
+    }
     const sections = parseAiAnalysis(await res.text());
 
     const panelHtml = AI_TABS.map((t, i) => {
-      let content;
-      if      (t.id === 'ai-full')       content = renderFullAnalysis(sections);
-      else if (t.id === 'ai-overview')   content = renderTabContent(sections, 'Company Profile', 'Parent Company & Corporate Context', 'Network Size');
-      else if (t.id === 'ai-network')    content = renderTabContent(sections, 'Geographic Intelligence');
-      else if (t.id === 'ai-product')    content = renderTabContent(sections, 'CPMS Identification', 'App Quality');
-      else if (t.id === 'ai-commercial') content = renderTabContent(sections, 'Business Model');
-      else if (t.id === 'ai-signals')    content = renderTabContent(sections, 'Business Gaps', 'Competitive Position', 'Research Gaps & Unresolved');
-      else if (t.id === 'ai-synthesis')  content = renderTabContent(sections, 'Synthesis', 'Strategic Context', 'Development Stage & Trajectory');
-      return `<div id="panel-${t.id}" class="panel${i === 0 ? ' active' : ''}">${content}</div>`;
+      let inner;
+      if      (t.id === 'ai-full')       inner = renderFullAnalysis(sections);
+      else if (t.id === 'ai-overview')   inner = renderTabContent(sections, 'Company Profile', 'Parent Company & Corporate Context', 'Network Size');
+      else if (t.id === 'ai-network')    inner = renderTabContent(sections, 'Geographic Intelligence');
+      else if (t.id === 'ai-product')    inner = renderTabContent(sections, 'CPMS Identification', 'App Quality');
+      else if (t.id === 'ai-commercial') inner = renderTabContent(sections, 'Business Model');
+      else if (t.id === 'ai-signals')    inner = renderTabContent(sections, 'Business Gaps', 'Competitive Position', 'Research Gaps & Unresolved');
+      else if (t.id === 'ai-synthesis')  inner = renderTabContent(sections, 'Synthesis', 'Strategic Context', 'Development Stage & Trajectory');
+      return `<div id="panel-${t.id}" class="panel${i === 0 ? ' active' : ''}">${inner}</div>`;
     }).join('');
 
-    document.getElementById('panel-ai-analysis').innerHTML = `
-      <span class="ai-analysis-badge">AI Generated</span>
+    content.innerHTML = `
       ${renderMetadataStrip(sections['_metadata'] || '')}
       ${renderAlexNotes(sections)}
       ${buildAiTabBar()}
       ${panelHtml}`;
-  } catch(e) { fallback(); }
+  } catch(e) {
+    content.innerHTML = '<p class="muted-note">No AI analysis available for this company yet.</p>';
+  }
+}
+
+async function loadAiAnalysis(slug, versions) {
+  const list = (versions && versions.length)
+    ? versions
+    : [{ id: 'default', label: 'Default', file: `${slug}.md` }];
+  const activeFile = list[0].file;
+  renderVersionSelector(slug, list, activeFile);
+  await loadAiAnalysisFile(slug, activeFile);
 }
 
 function switchTab(id, el) {
